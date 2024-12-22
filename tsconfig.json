@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"rootDir": "./src",
+		"outDir": "./dist",
+		"forceConsistentCasingInFileNames": true,
+		"strict": true
+	}
+}
