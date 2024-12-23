@@ -1,4 +1,3 @@
-"use strict";
 // 4. Create a generic function that would make the following code compile:
 var AnimalType;
 (function (AnimalType) {
@@ -31,3 +30,4 @@ const strings = ['apple', 'banana', 'orange'];
 const firstString = firstElement(strings); // firstString is of type string
 /* ******************************************************************************************************************************** */
 let pair1 = { first: 'one', second: 1 }, pair2 = { first: () => { }, second: [] }, pair3 = { first: true, second: { x: 1 } };
+export {};

@@ -1,4 +1,3 @@
-"use strict";
 // 2. Cover the following code with types. Each class should implement an interface
 class BurgerBuilder {
     burger;
@@ -162,3 +161,4 @@ class BookCollection {
         this.books = this.books.filter(book => book.id !== id);
     }
 }
+export {};

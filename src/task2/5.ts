@@ -1,39 +1,28 @@
-// // 5. Create a decorator '@log' that would print given message:
-// class MyClass {
-// 	@log
-// 	myMethod(arg1, arg2) {
-// 		return arg1 + arg2;
-// 	}
-// }
+// 5. Create a decorator '@log' that would print given message:
+// Result:
+// Calling myMethod with arguments: [2, 3]
+// Result: 5
 
-// const myObj = new MyClass();
-// myObj.myMethod(2, 3);
-// // Result:
-// // Calling myMethod with arguments: [2, 3]
-// // Result: 5
+function log(target: Object, propertyName: string | symbol, descriptor: PropertyDescriptor) {
+	const originalMethod = descriptor.value;
 
-var say = 'a bird in hand > two in the bush';
-var html = htmlEscape`<div> I would just like to say : ${say}</div>`;
+	descriptor.value = function (...args: any[]) {
+		const result = originalMethod.apply(this, args);
 
-// a sample tag function
-function htmlEscape(literals: TemplateStringsArray, ...placeholders: string[]) {
-	let result = '';
+		console.log(`Result:\nCalling ${String(propertyName)} with arguments:`, args, `\nResult:`, result);
 
-	console.log(literals, placeholders);
-	// interleave the literals with the placeholders
-	for (let i = 0; i < placeholders.length; i++) {
-		result += literals[i];
-		result += placeholders[i]
-			.replace(/&/g, '&amp;')
-			.replace(/"/g, '&quot;')
-			.replace(/'/g, '&#39;')
-			.replace(/</g, '&lt;')
-			.replace(/>/g, '&gt;');
-	}
+		return result;
+	};
 
-	// add the last literal
-	result += literals[literals.length - 1];
-	return result;
+	return descriptor;
 }
 
-console.log(html);
+class MyClass {
+	@log
+	myMethod(arg1: number, arg2: number) {
+		return arg1 + arg2;
+	}
+}
+
+const myObj = new MyClass();
+myObj.myMethod(2, 3);

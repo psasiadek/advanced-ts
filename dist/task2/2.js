@@ -1,4 +1,3 @@
-"use strict";
 // 2. Add a type that would cover the structure of the given object:
 var AnimalType;
 (function (AnimalType) {
@@ -15,3 +14,4 @@ const myPet = {
     type: AnimalType.Cat,
 };
 console.log(getPetDescription(myPet));
+export {};

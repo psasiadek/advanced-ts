@@ -1,4 +1,3 @@
-"use strict";
 // 1. Cover the following code with types
 function addNumbers(a, b) {
     return a + b;
@@ -94,3 +93,4 @@ let child1 = new Node2(2);
 let child2 = new Node2(3);
 let grandchild1 = new Node2(4);
 let grandchild2 = new Node2(5);
+export {};

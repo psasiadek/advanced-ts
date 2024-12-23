@@ -1,4 +1,3 @@
-"use strict";
 // 1. Create an enum that would fit as argument for the given function:
 var Animals;
 (function (Animals) {
@@ -26,3 +25,4 @@ function makeAnimalSound(type) {
             break;
     }
 }
+export {};

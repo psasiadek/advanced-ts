@@ -1,4 +1,3 @@
-"use strict";
 // 3. Add an interface that would cover the structure of the given object(reuse the type from the previous task):
 var AnimalType;
 (function (AnimalType) {
@@ -29,3 +28,4 @@ const myPetOwner = {
     ],
 };
 console.log(getPetOwnerDescription(myPetOwner));
+export {};

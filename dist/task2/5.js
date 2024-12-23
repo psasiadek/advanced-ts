@@ -1,34 +1,30 @@
-"use strict";
-// // 5. Create a decorator '@log' that would print given message:
-// class MyClass {
-// 	@log
-// 	myMethod(arg1, arg2) {
-// 		return arg1 + arg2;
-// 	}
-// }
-// const myObj = new MyClass();
-// myObj.myMethod(2, 3);
-// // Result:
-// // Calling myMethod with arguments: [2, 3]
-// // Result: 5
-var say = 'a bird in hand > two in the bush';
-var html = htmlEscape `<div> I would just like to say : ${say}</div>`;
-// a sample tag function
-function htmlEscape(literals, ...placeholders) {
-    let result = '';
-    console.log(literals, placeholders);
-    // interleave the literals with the placeholders
-    for (let i = 0; i < placeholders.length; i++) {
-        result += literals[i];
-        result += placeholders[i]
-            .replace(/&/g, '&amp;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#39;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;');
-    }
-    // add the last literal
-    result += literals[literals.length - 1];
-    return result;
+// 5. Create a decorator '@log' that would print given message:
+// Result:
+// Calling myMethod with arguments: [2, 3]
+// Result: 5
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+function log(target, propertyName, descriptor) {
+    const originalMethod = descriptor.value;
+    descriptor.value = function (...args) {
+        const result = originalMethod.apply(this, args);
+        console.log(`Result:\nCalling ${String(propertyName)} with arguments:`, args, `\nResult:`, result);
+        return result;
+    };
+    return descriptor;
 }
-console.log(html);
+class MyClass {
+    myMethod(arg1, arg2) {
+        return arg1 + arg2;
+    }
+}
+__decorate([
+    log
+], MyClass.prototype, "myMethod", null);
+const myObj = new MyClass();
+myObj.myMethod(2, 3);
+export {};
